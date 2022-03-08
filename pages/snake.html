@@ -1,0 +1,135 @@
+
+<canvas id="gc", width="729", height="729"></canvas>
+<script>
+window.onload=function() {
+    canv=document.getElementById("gc");
+    data=canv.getContext("2d");
+    document.addEventListener("keydown", inputKey);
+    setInterval(game, 1000/15);
+}
+p1x=p1y=9;
+p2x=p2y=18;
+grid=tile=27;
+v1x=v1y=0;
+v2x=v2y=0;
+tx=ty=13;
+trail1=[];
+trail2=[];
+
+tail1=5;
+tail2 = 5;
+
+function game() {
+    p1x += v1x;
+    p2x += v2x;
+    p1y += v1y;
+    p2y += v2y;
+    // document.write(v1x);
+    // document.write(v1y);
+    if (p1x < 0) {
+        p1x=tile-1;
+    }
+    if (p1x > tile-1) {
+        p1x=0;
+    }
+    if (p1y < 0) {
+        p1y=tile-1;
+    }
+    if (p1y > tile-1) {
+        p1y = 0;
+    }
+    if (p2x < 0) {
+        p2x=tile-1;
+    }
+    if (p2x > tile-1) {
+        p2x=0;
+    }
+    if (p2y < 0) {
+        p2y=tile-1;
+    }
+    if (p2y > tile-1) {
+        p2y = 0;
+    }
+    data.fillStyle="black";
+    data.fillRect(0,0,canv.width, canv.height);
+
+    data.fillStyle="red";
+    for(var i=0; i < trail1.length; i++) {
+        data.fillRect(trail1[i].x*grid, trail1[i].y*grid, grid-2, grid-2);
+        if((trail1[i].x == p1x && trail1[i].y == p1y)) {
+            tail1 = 5;
+        }
+        //  || (trail2[i].x == p1x && trail2[i].y == p1y)
+    }
+    trail1.push({x:p1x, y:p1y});
+    while(trail1.length > tail1) {
+        trail1.shift();
+    }
+    
+    data.fillStyle="blue";
+    for(var i = 0; i < trail2.length; i++) {
+        data.fillRect(trail2[i].x*grid, trail2[i].y*grid, grid-2, grid-2);
+        if((trail2[i].x == p2x && trail2[i].y == p2y)) {
+            tail2 = 5;
+        }
+        //  || (trail1[i].x == p2x && trail1[i].y == p2y)
+    }
+    
+
+    trail2.push({x:p2x, y:p2y});
+    while(trail2.length > tail2) {
+        trail2.shift();
+    }
+   
+    if (tx==p1x && ty==p1y) {
+        tail1++;
+        tx = Math.floor(Math.random()*tile);
+        ty = Math.floor(Math.random()*tile);
+    }
+    if (p2x == tx && p2y == ty) {
+        tail1++;
+        tx = Math.floor(Math.random()*tile);
+        ty = Math.floor(Math.random()*tile);
+    }
+    data.fillStyle = "pink";
+    data.fillRect(tx*grid, ty*grid, grid-2, grid-2);
+}
+function inputKey(evt) {
+    switch(evt.KeyCode) {
+        case 37:
+            v1x=-1;
+            v1y=0;
+            break;  
+        case 38:
+            v1x=0;
+            v1y=1;
+            break;                      
+        case 39:
+            v1x=1;
+            v1y=0;
+            break;
+        case 40:
+            v1x=0;
+            v1y=-1;
+            break;
+        case 65:
+            v2x=-1;
+            v2y=0;
+            break;
+        case 87:
+            v2x=0;
+            v2y=1;
+            break;
+        case 68:
+            v2x=1;
+            v2y=0;
+            break;
+        case 83:
+            v2x=0;
+            v2y=-1;
+            break;
+
+    }
+}
+
+</script>
