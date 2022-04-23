@@ -18,12 +18,13 @@ h2   {color: rgb(41, 150, 41);
     text-align: center;
 }
 .text {color: rgb(255, 255, 255);
-    width: 750px;
-    margin: auto;
+    width: 1400px;
+    margin: 50px 50px 0px 50px;
     font-family: 'Outfit', sans-serif;
-    font-size: medium;
-}
+    font-size: 34px;
+    line-height: 44px;
 
+}
 .row {
     display: flex;
 }
