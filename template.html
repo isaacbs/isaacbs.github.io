@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Isaac Blaine-Sauer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./home2.css">
+<script type="text/javascript" src="warpspeed.min.js"></script>
+</head>
+<body>
+<div style="position:fixed; z-index:0; top:0; left:0; width:100%; height:100%;">
+		<canvas id="canvas" style="width:100%; height:100%;"></canvas>
+		<script type="text/javascript">new WarpSpeed("canvas", {starColor:"#0F6B63",backgroundColor:"#FFFFFF", speed:1.4, warpEffectLength:8, density:3, starSize: 5 });</script>
+</div>
+<!-- Header -->
+<br>
+<header class="w3-display-container w3-content w3-center" style="max-width:30%">
+  <img class="w3-image" src="./images/a3.gif" alt="Me" width="100%" height="1000">
+  <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center" style="max-width:400" width="50%">
+    <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge">Isaac Blaine-Sauer</h1>
+    <h5 class="w3-hide-large" style="white-space:nowrap">Isaac Blaine-Sauer</h5>
+    <h3 class="w3-hide-medium w3-hide-small">DEVELOPER</h3>
+  </div>
+  
+  <!-- Navbar (placed at the bottom of the header image) -->
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-32px">
+    <a href="#" class="w3-bar-item w3-button">Home</a>
+    <a href="#portfolio" class="w3-bar-item w3-button">Portfolio</a>
+    <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+  </div>
+</header>
+
+<!-- Navbar on small screens -->
+<div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+<div class="w3-bar w3-light-grey">
+  <a href="#" class="w3-bar-item w3-button">Home</a>
+  <a href="#portfolio" class="w3-bar-item w3-button">Portfolio</a>
+  <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+</div>
+</div>
+<!-- Page content -->
+<div class="w3-content w3-padding-large w3-margin-top" id="portfolio">
+
+  <!-- Images (Portfolio) -->
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="animation5.gif" alt="Avatar" style="width:800px;height:800px;" >
+      </div>
+      <div class="flip-card-back">
+        <h1>MindMazes</h1>
+        <p></p>
+        <p>Utilized Pathfinding algorithms and visualization techniques to create abstract maze art.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <img src="animation5.gif" alt="Ocean" class="w3-image" width="1000" height="500"> -->
+  <img src="./images/aslee.jpg" alt="Ocean II" class="w3-image w3-margin-top" width="1000" height="500">
+  <img src="/w3images/falls2.jpg" alt="Falls" class="w3-image w3-margin-top" width="1000" height="500">
+  <img src="/w3images/mountainskies.jpg" alt="Skies" class="w3-image w3-margin-top" width="1000" height="500">
+  <img src="/w3images/mountains2.jpg" alt="Mountains" class="w3-image w3-margin-top" width="1000" height="500">
+
+  <!-- Contact -->
+  <div class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="contact">
+    <h3 class="w3-center">Contact</h3>
+    <hr>
+    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus.</p>
+
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" required name="Name">
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" required name="Email">
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" required name="Message">
+      </div>
+      <button type="submit" class="w3-button w3-block w3-dark-grey">Send</button>
+    </form><br>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+
+  </div>
+
+<!-- End page content -->
+</div>
+
+</body>
+</html>
