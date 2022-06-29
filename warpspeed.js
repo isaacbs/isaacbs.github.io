@@ -15,11 +15,33 @@ function Star(x,y,z){
 	this.z=z;
 	this.size=0.5+Math.random();
 }
+var myTheme = false;
 
 function ColorChange(){
-	const colors = ["#0a2342ff","#205a2dff", "#0f6b63ff", "#7c3227ff", "#59364fff"]
+	const colors = ["#00FFCD","#93FF96", "#BFDBF7", "#BCED09", "#8DF7E2", "#E3655B", "#F62DAE", "#B30089", "#CFD11A", "#E8E9EB", "#FF5400", "#FFBD00", "#EEF8FF"];
+	let num = Math.floor(Math.random() * colors.length);
+	return colors[num];
 	// for (let i = 0; i < colors.length; i++ )
 }
+function ColorChangeTwo(){
+	const colors = ["#000009","#D90429","#773344","#323031","#190B28", "#09201C","#0E3B43", "#3E6990"];
+	let num = Math.floor(Math.random() * colors.length);
+	return colors[num];
+	// for (let i = 0; i < colors.length; i++ )
+}
+function RandomizeSize(){
+	const size = Math.floor(Math.random()*120)+30;
+	return size;
+}
+function RandomSpeed(){
+	const speed = Math.random()*2+0.1;
+	return speed
+}
+function Params(){
+
+}
+
+
 
 function WarpSpeed(targetId,config){
 	this.targetId=targetId;
