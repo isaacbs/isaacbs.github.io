@@ -45,7 +45,7 @@ h2   {color: rgb(41, 150, 41);
 }
 
 .bg {
-    background-image: url(images/joe.jpg);
+    background-image: url(../images/joe.jpg);
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;

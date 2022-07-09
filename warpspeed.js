@@ -17,14 +17,14 @@ function Star(x,y,z){
 }
 var myTheme = false;
 
-function ColorChange(){
+function ColorStar(){
 	const colors = ["#00FFCD","#93FF96", "#BFDBF7", "#BCED09", "#8DF7E2", "#E3655B", "#F62DAE", "#B30089", "#CFD11A", "#E8E9EB", "#FF5400", "#FFBD00", "#EEF8FF"];
 	let num = Math.floor(Math.random() * colors.length);
 	return colors[num];
 	// for (let i = 0; i < colors.length; i++ )
 }
-function ColorChangeTwo(){
-	const colors = ["#000009","#D90429","#773344","#323031","#190B28", "#09201C","#0E3B43", "#3E6990"];
+function ColorBackground(){
+	const colors = ["#000009","#773344","#323031","#190B28", "#09201C","#0E3B43", "#3E6990", "#3b122a"];
 	let num = Math.floor(Math.random() * colors.length);
 	return colors[num];
 	// for (let i = 0; i < colors.length; i++ )
