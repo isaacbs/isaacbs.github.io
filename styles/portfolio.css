@@ -1,8 +1,18 @@
 @font-face {
   font-family: mainFont;
-  src: url(./EduVICWANTBeginner-Medium.ttf);
+  src: url(./EduQLDBeginner-VariableFont_wght.woff2) format("woff2-variations");
+  font-weight: 1 999;
+  font-stretch: 0% 100%;
+  font-optical-sizing: 0 100;;
 }
-
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
 
 div.lineSeparator{
 	height:1px;
@@ -26,7 +36,7 @@ a.button1{
 	box-sizing: border-box;
 	text-decoration:none;
   font-size: 20px;
-	font-weight:300;
+	font-weight:450;
 	color:#FFFFFF;
 	text-align:center;
 	transition: all 0.2s;
@@ -108,7 +118,7 @@ a.button1:hover{
   position: relative;
   max-width: 90%;
   width: 800px;
-  margin:50px;
+  margin:50px 50px 0 50px;
   /* top: %; */
   /* bottom: 50%; */
   left: 50%;
@@ -132,36 +142,67 @@ a.button1:hover{
   user-select: none;
 }
 
-.resumeName{
-    font-family: mainFont;
-    background:rgba(0,0,0,0);
-    font-size: 50px;
-    color:#ffffff;
-    width: 800px;
-    padding: 30px;
-    margin: 40px;
-    z-index: 0;
 
-}
-.port_maze {
+.resumeBox{
+  display: flex;
+  flex-direction: column;
+  font-family: mainFont;
+  background:rgba(80, 80, 80, 0.568);
+  color:#ffffff;
+  width: 80%;
+  max-width: 1000px;
+  border: solid;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
   position: relative;
-  max-width: 50%;
-  width:30%;
-  top: 50vh;
-  /* bottom: 50%; */
-  left: 35%;
-  /* bring your own prefixes */
-  
-  transform: translate(-50%, -50%);
+  padding: 1em;
 }
-.port_maze_text {
-  position: relative;
-  max-width: 50%;
-  width:30%;
-  top: 35vh;
-  /* bottom: 50%; */
-  right: 35%;
-  /* bring your own prefixes */
-  
-  transform: translate(-50%, -50%);
+
+.resumeName{
+  align-self:center;
+  font-size: 3.5rem;
+  font-weight: 550;
+  margin:0px;
+}
+.resumeHeader{
+  align-self:left;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.resumeSubheader{
+  align-self:left;
+  margin: 0.2em 0 0 1em;
+  font-size: 1.8rem;
+  font-weight: 450;
+}
+.resumeText{
+  align-self:left;
+  margin: 0.5em 0 0.5em 3.5em;
+  font-size: 1.25rem;
+  font-weight: 200;
+}
+.resumeDate{
+  align-self:left;
+  margin: 0.5em 0 0 2em;
+  font-size: 1.1rem;
+  font-weight: 100;
+}
+
+span {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+ul {
+  margin: 0 0 0 -1.5em;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+span b{
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin:0 0 0 -1.0em;
 }
