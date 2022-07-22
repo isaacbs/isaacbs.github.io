@@ -1,0 +1,34 @@
+body {background-image: url("images/home.jpg");
+    background-size: cover;
+    height: 100%}
+h1 {
+    word-spacing: 10px;
+    letter-spacing: 3px;
+    text-align: center;    
+    font-family: 'Outfit', sans-serif;
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.row {
+    display: flex;
+}
+.max {
+    object-fit: contain;
+    max-width: 100%;
+
+}
+
+.hyperlink   {
+    font-family: 'Outfit', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(199, 34, 34);
+}
