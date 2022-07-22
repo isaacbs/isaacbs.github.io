@@ -1,6 +1,6 @@
 @font-face {
   font-family: mainFont;
-  src: url(./EduQLDBeginner-VariableFont_wght.woff2) format("woff2-variations");
+  src: url(./JosefinSans-VariableFont_wght.woff2) format("woff2-variations");
   font-weight: 1 999;
   font-stretch: 0% 100%;
   font-optical-sizing: 0 100;;
@@ -34,6 +34,7 @@ a.button1{
 	border-radius:0.12em;
 	box-sizing: border-box;
 	text-decoration:none;
+  background:rgba(80, 80, 80, 0.568);
   font-size: 20px;
 	font-weight:450;
 	color:#FFFFFF;
@@ -112,16 +113,19 @@ a.button1:hover{
 }
 
 .centeredTop {
+  display: flex;
+  justify-content: center;
   position: relative;
   max-width: 90%;
-  width: 800px;
-  margin:50px 50px 0 50px;
+  width: 80%;
+  margin:25px auto 25px auto;
+  
   /* top: %; */
   /* bottom: 50%; */
-  left: 50%;
+  /* left: 50%; */
   /* bring your own prefixes */
   
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
 
 .background {
@@ -153,7 +157,8 @@ a.button1:hover{
   z-index: 0;
   position: relative;
   padding: 0em;
-  top: 29vh;
+  top: 31vh;
+  border-radius:0.12em;
 }
 
 .resumeName{
@@ -163,7 +168,7 @@ a.button1:hover{
   margin:0px;
 }
 .resumeHeader{
-  align-self:left;
+  align-self:center;
   font-size: 2.5rem;
   font-weight: 500;
 }

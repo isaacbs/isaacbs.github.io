@@ -1,6 +1,6 @@
 @font-face {
   font-family: mainFont;
-  src: url(./EduQLDBeginner-VariableFont_wght.woff2) format("woff2-variations");
+  src: url(./JosefinSans-VariableFont_wght.woff20) format("woff2-variations");
   font-weight: 1 999;
   font-stretch: 0% 100%;
   font-optical-sizing: 0 100;;
@@ -38,8 +38,10 @@ a.button1{
   font-size: 20px;
 	font-weight:450;
 	color:#FFFFFF;
+  background:rgba(80, 80, 80, 0.568);
 	text-align:center;
 	transition: all 0.2s;
+  align-self:auto;
 }
 a.button1:hover{
 	color:#000000;
@@ -115,16 +117,20 @@ a.button1:hover{
 }
 
 .centeredTop {
+  display: flex;
+  justify-content: center;
   position: relative;
   max-width: 90%;
-  width: 800px;
-  margin:50px 50px 0 50px;
+  width: 80%;
+  margin:25px auto 25px auto;
+  
+
   /* top: %; */
   /* bottom: 50%; */
-  left: 50%;
+  /* left: 50%; */
   /* bring your own prefixes */
   
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
 .background {
   position: fixed;
@@ -145,19 +151,42 @@ a.button1:hover{
 
 .resumeBox{
   display: flex;
-  flex-direction: column;
+  align-items: left;
+  flex-direction: row;
+  justify-content: left;
   font-family: mainFont;
   background:rgba(80, 80, 80, 0.568);
   color:#ffffff;
   width: 80%;
-  max-width: 1000px;
+  max-width: 1200px;
   border: solid;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
   position: relative;
   padding: 1em;
+  border-radius:0.12em;
+  margin-bottom:35px;
 }
+.resumeSubbox{
+  flex-basis: 49%;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: left;
+  font-family: mainFont;
+  color:#ffffff;
+  width: 80%;
+  max-width: 600px;
+  
+  margin-left: 2%;
+  margin-right: auto;
+  z-index: 0;
+  position: relative;
+  
+  border-radius:0.12em;
+}
+
 
 .resumeName{
   align-self:center;
@@ -166,21 +195,24 @@ a.button1:hover{
   margin:0px;
 }
 .resumeHeader{
-  align-self:left;
+  align-self:center;
   font-size: 2.5rem;
   font-weight: 500;
+  float: left;
 }
 .resumeSubheader{
-  align-self:left;
-  margin: 0.2em 0 0 1em;
+  align-self:center;
+  /* margin: 0.2em 0 0 1em; */
   font-size: 1.8rem;
   font-weight: 450;
 }
 .resumeText{
   align-self:left;
-  margin: 0.5em 0 0.5em 3.5em;
+  /* margin: 0.5em 0 0.5em 2em; */
   font-size: 1.25rem;
   font-weight: 200;
+  float: left;
+  
 }
 .resumeDate{
   align-self:left;
@@ -188,6 +220,23 @@ a.button1:hover{
   font-size: 1.1rem;
   font-weight: 100;
 }
+
+img {
+  max-width: 100%;
+  vertical-align: text-bottom;
+}
+
+.resumeImage{
+  margin: 0 0 0 0;
+  border: solid;
+  color:#ffffff;
+  height:auto;
+  flex-basis: 49%;
+}
+
+
+
+
 
 span {
   font-size: 1.4rem;
