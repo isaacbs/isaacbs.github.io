@@ -200,12 +200,28 @@ span {
   font-weight: 300;
 }
 
-ul {
+.col2 {
   margin: 0 0 0 -1.5em;
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
 }
+.col1 {
+  margin: 0 0 0 -1.5em;
+}
+.col4 {
+  margin: 0 0 0 -1.5em;
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+}
+.col3 {
+  margin: 0 0 0 -1.5em;
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}
+
 
 span b{
   font-size: 1.3rem;
