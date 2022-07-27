@@ -252,20 +252,19 @@ img {
   flex-basis: 49%;
 }
 
-
-
-
-
 span {
   font-size: 1.4rem;
   font-weight: 300;
 }
 
-ul {
+.col2 {
   margin: 0 0 0 -1.5em;
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
+}
+.col1 {
+  margin: 0 0 0 -1.5em;
 }
 
 span b{
