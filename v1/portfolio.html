@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/portfolio.css">
+    <script type="text/javascript" src="warpspeed.min.js"></script>
+    <script type="text/javascript" src="warpspeed.js"></script>
+</head>
+<body>
+  <div id="backround">
+    <div style="position:fixed; z-index:0; top:0; left:0; width:100%; height:100%;">
+        <canvas id="canvas" style="width:100%; height:100%;"></canvas>
+        <script type="text/javascript">
+          background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
+    </div>
+  </div>
+<div class="centeredTop">
+  <a href="./index.html" class="button1">Home</a>
+  <a href="./portfolio.html" class="button1">Portfolio</a>
+  <!-- <a href="./pages/home2.html" class="button1">Photography</a> -->
+  <a href="./resume.html" class="button1">Resume</a>
+  <!-- <a href="./hobbies.html" class="button1">Hobbies</a> -->
+  <a href="./contact.html" class="button1">Contact</a>
+</div>
+<div class="resumeBox">
+  <div class="resumeImage">
+    <img src="./animation5.gif" alt="mazeGIF" width="100%">
+  </div>
+  <div class="resumeSubboxR">
+    <br>
+    <div class="resumeHeader">
+      MindMaze
+    </div>
+    <div class="resumeSubheader">Algorithmically generated maze animations</div><br>
+    <div class="resumeText">
+      A randomized maze generator and animator. Supports run-time selection from generation algorithms including: Kruskal's, sidewinder, binary tree, and depth first search. Solutions can be found using depth first search, breadth first search, and A* search with multiple heuristics.
+    <br>
+    <br>
+      Originally designed to compare efficiency of algorithms for generating and solving mazes. Animation capability was added later to provide a visualization. 
+    <br>
+    <br>
+      Coded in Python with libraries including numpy and matplotlib.
+      <br><br><br><br>
+    </div>
+    <a href="https://github.com/isaacbs/blocks" class="button1">Repo</a>
+  </div>
+    
+</div>
+<div class="resumeBox">
+  <div class="resumeSubboxL">
+    <br>
+    <div class="resumeHeader">
+      Echoes
+    </div>
+    <div class="resumeSubheader" >
+      A music based deep learning application
+    </div><br>
+    <div class="resumeText">
+      A WIP project used as a documentation and exploration of my learning process for ML and deep learning. <br><br>
+      Involves organization and manipulation of data in the form of audio files using numpy and pandas. Visualizations of the data were created with librosa, matplotlib, and seaborn.<br><br>
+      Multiple models are trained on a data set of Bach compositions using SciKit learn and Pytorch.<br><br><br><br><br>
+    </div>
+    <a href="https://github.com/isaacbs/echoes" class="button1">Repo</a>
+  </div>
+  <div class="resumeImage">
+    <img src="./spectogram.png" alt="spectogram" width="100%">
+  </div>
+  
+</div>
+<div class="resumeBox">
+  <div class="resumeSubbox">
+  <div class="resumeHeader">University of Minnesota projects</div><br><br><br>
+  <div class="resumeSubheader">Projects completed during my college computer science curriculum</div><br>
+    <div class="resumeText">
+      <ul class="col1">
+        <li>An automated drone program which utilizes computer vision, image processing, design templates, and 3D motion to search an area for a target and send help to the location (C++)</li>
+        <li>A concurrent producer-consumer banking scenario utilizing multithreading, semaphores, sockets and signals in order to achieve high performance (C)</li>
+        <li>A tautology checker and Lisp interpreter written with functional programming (OCamL)</li>
+        <li>A Battleship game (Java) and a player v. computer version of snake (Python)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+</body>
+
+</html>

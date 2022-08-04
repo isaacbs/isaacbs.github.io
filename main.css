@@ -1,0 +1,51 @@
+.containermid {
+    height: 45vh;
+}
+.background1 {
+    background:rgba(235, 235, 235, 0.863);
+    /* border-radius: 3px; */
+}
+.color1 {
+    color: rgb(27,158,119)
+}
+
+.color2 {
+    color: rgb(140,15,162)
+}
+
+.color3 {
+    color: rgb(105, 12, 41)
+}
+.color4 {
+    color: rgb(49, 51, 179)
+}
+.color5 {
+    color: rgb(8, 114, 61)
+}
+
+.b1 {
+    color: rgb(27,158,119);
+    border-color: rgb(27,158,119);
+}
+
+.b2 {
+    color: rgb(140,15,162);
+    border-color: rgb(140,15,162);
+}
+
+.b3 {
+    color: rgb(105, 12, 41);
+    border-color: rgb(105, 12, 41);
+}
+.b4 {
+    color: rgb(8, 114, 61);
+    border-color: rgb(8, 114, 61);
+}
+.body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
