@@ -1,60 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Contact</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./styles/contact.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <title>Resume</title>
+
+        <style>
+      
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+      
+            .bi {
+              vertical-align: -.125em;
+              fill: currentColor;
+            }
+      
+            .nav-scroller {
+              position: relative;
+              z-index: 2;
+              height: 2.75rem;
+              overflow-y: hidden;
+            }
+      
+            .nav-scroller .nav {
+              display: flex;
+              flex-wrap: nowrap;
+              padding-bottom: 1rem;
+              margin-top: -1px;
+              overflow-x: auto;
+              text-align: center;
+              white-space: nowrap;
+              -webkit-overflow-scrolling: touch;
+            }
+          </style>
+          <link href="main.css" rel="stylesheet">
+    </head>
     <script type="text/javascript" src="warpspeed.min.js"></script>
     <script type="text/javascript" src="warpspeed.js"></script>
-</head>
-<body>
-  <div id="backround">
-    <div style="position:fixed; z-index:-1; top:0; left:0; width:100%; height:100%;">
-        <canvas id="canvas" style="width:100%; height:100%;"></canvas>
-        <script type="text/javascript">
-          background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
-    </div>
-  </div>
-  <!-- Navigation Buttons - Placed at the top of the page -->
-<div class="centeredTop">
-    <a href="./index.html" class="button1">Home</a>
-    <a href="./portfolio.html" class="button1">Portfolio</a>
-    <!-- <a href="./pages/home2.html" class="button1">Photography</a> -->
-    <a href="./resume.html" class="button1">Resume</a>
-    <!-- <a href="./hobbies.html" class="button1">Hobbies</a> -->
-    <a href="./contact.html" class="button1">Contact</a>
-</div>
-<div class="resumeBox">
-  <div class="resumeSubboxL">
-    <div class="resumeHeader">All About Me<br></div>
-    <div class="resumeText">
-      Hey there, thanks for viewing my website. My name is Isaac Blaine-Sauer and I am currently a senior studying Computer Science at the University of Minnesota Twin Cities.
-      I have a strong interest in applications of machine learning/AI in art and music. One of my goals is training models that can produce enjoyable melodies based on the users 
-      favorite kinds of music. As a classically trained violinist, music has been a major part of my life since age 4. I hope to be able to connect the passions I have for violin and artificial intelligence in my future career.
-      <br><br>
-      In addition to programming, I am an avid home chef and love sharing my food with other people. Trying new recipes and experimenting with old ones in order to achieve a perfect combination of flavors is one of 
-      my favorite creative outlets. I also enjoy photography and plan on including a portfolio of my work on this website when I have the time.
-      <br><br>
-      I love to stay active by either thoroughly destroying my friends at disc golf or getting destroyed on the tennis court. I have found that maintaining a healthy mind-body balance has benefited me immensely throughout my life.
-      <br><br>
-      Feel free to reach out to me via email at isaac.blaine.sauer@gmail.com or on LinkedIn.
-      <br><br>
-      If you are interested in the source code for any of my current projects, my GitHub is linked below.
-    </div>
-    <div class = "centeredTop">
-      <a href="https://github.com/isaacbs" class="button1">GitHub</a>
-      <a href="https://www.linkedin.com/in/isaac-blaine-sauer/" class="button1">LinkedIn</a></div>
-  </div>
-  <div class="resumeSubboxR">
-  <img src="./images/me.jpg" width="100%">
-</div>
+
+    <body>
+        <!-- Code for background effects -->
+        <div id="backround">
+            <div style="position:fixed; z-index:-1; top:0; left:0; width:100%; height:100%;">
+                <canvas id="canvas" style="width:100%; height:100%;"></canvas>
+                <script type="text/javascript">
+                background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
+            </div>
+        </div>
+        <!-- Code for navbar -->
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <nav class="navbar navbar-expand-md navbar-dark">
+                        <a href="./index.html" class="navbar-brand">
+                            Isaac Blaine-Sauer</a>
+                        <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#toggleMobileMenu"
+                        aria-controls="toggleMobileMenu"
+                        aria-expanded="false"
+                        aria-lable="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                            <ul class="navbar-nav ms-auto">
+                                <li>
+                                    <a class="nav-link" href="./portfolio.html">Portfolio</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./resume.html">Resume</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./contact.html">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        </div>
+        <div class="container my-5">
+            <div class="background1 rounded-3 p-0">
+            <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3">
+            <div class="col-lg-6 p-2 p-lg-5 pt-lg-3">
+                <div class="color5">
+                    <h1 class="display-2 fw-bold lh-1">About Me</h1>
+                    <br>
+                    <p class="lead">Hey there, thanks for viewing my website. My name is Isaac Blaine-Sauer and I am currently a senior studying Computer Science at the University of Minnesota Twin Cities. I have a strong interest in applications of machine learning/AI in art and music. One of my goals is training models that can produce enjoyable melodies based on the users favorite kinds of music. As a classically trained violinist, music has been a major part of my life since age 4. I hope to be able to connect the passions I have for violin and artificial intelligence in my future career.
+                        <br><br>
+                        In addition to programming, I am an avid home chef and love sharing my food with other people. Trying new recipes and experimenting with old ones in order to achieve a perfect combination of flavors is one of my favorite creative outlets. I also enjoy photography and plan on including a portfolio of my work on this website when I have the time.
+                        <br><br>
+                        I love to stay active by either thoroughly destroying my friends at disc golf or getting destroyed on the tennis court. I have found that maintaining a healthy mind-body balance has benefited me immensely throughout my life.
+                        <br><br>
+                        Feel free to reach out to me via email at isaac.blaine.sauer@gmail.com or on LinkedIn.
+                        <br><br>
+                        If you are interested in the source code for any of my current projects, my GitHub is linked below.</p>
+                </div>
+                <br>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                    <a class="btn btn-outline b4 btn-lg px-4" href="https://github.com/isaacbs/">GitHub</a>
+                    <a class="btn btn-outline b4 btn-lg px-4" href="https://www.linkedin.com/in/isaac-blaine-sauer/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-0 p-lg-5 overflow-hidden">
+                <img class="img-fluid rounded-3 border" src="./images/me.jpg" alt="">
+            </div>
+            </div>
+            </div>
+        </div>
 
 
 
 
-</div>
 
-</body>
 
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+        <sript src="boots/js/bootstrap.js"></sript>
+
+    </body>
 </html>

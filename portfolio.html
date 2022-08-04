@@ -1,93 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Portfolio</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./styles/portfolio.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <title>Portfolio</title>
+
+        <style>
+      
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+      
+            .bi {
+              vertical-align: -.125em;
+              fill: currentColor;
+            }
+      
+            .nav-scroller {
+              position: relative;
+              z-index: 2;
+              height: 2.75rem;
+              overflow-y: hidden;
+            }
+      
+            .nav-scroller .nav {
+              display: flex;
+              flex-wrap: nowrap;
+              padding-bottom: 1rem;
+              margin-top: -1px;
+              overflow-x: auto;
+              text-align: center;
+              white-space: nowrap;
+              -webkit-overflow-scrolling: touch;
+            }
+          </style>
+          <link href="main.css" rel="stylesheet">
+    </head>
     <script type="text/javascript" src="warpspeed.min.js"></script>
     <script type="text/javascript" src="warpspeed.js"></script>
-</head>
-<body>
-  <div id="backround">
-    <div style="position:fixed; z-index:0; top:0; left:0; width:100%; height:100%;">
-        <canvas id="canvas" style="width:100%; height:100%;"></canvas>
-        <script type="text/javascript">
-          background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
+
+    <body>
+        <!-- Code for background effects -->
+        <div id="backround">
+            <div style="position:fixed; z-index:-1; top:0; left:0; width:100%; height:100%;">
+                <canvas id="canvas" style="width:100%; height:100%;"></canvas>
+                <script type="text/javascript">
+                background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
+            </div>
+        </div>
+        <!-- Code for navbar -->
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <nav class="navbar navbar-expand-md navbar-dark">
+                        <a href="./index.html" class="navbar-brand">
+                            Isaac Blaine-Sauer</a>
+                        <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#toggleMobileMenu"
+                        aria-controls="toggleMobileMenu"
+                        aria-expanded="false"
+                        aria-lable="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                            <ul class="navbar-nav ms-auto">
+                                <li>
+                                    <a class="nav-link" href="./portfolio.html">Portfolio</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./resume.html">Resume</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./contact.html">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            </div>
+    <!-- Code for project cards -->
+    <div class="container my-5">
+        <div class="background1 rounded-3 p-0">
+        <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3">
+        <div class="col-lg-6 p-2 p-lg-5 pt-lg-3">
+            <div class="color1">
+            <h1 class="display-2 fw-bold lh-1">MindMaze<small class="display-6 fw-normal fs-3"><br>Algorithmically generated maze animations</small></h1>
+            <p class="lead">A randomized maze generator and animator. Supports run-time selection from generation algorithms including: Kruskal's, sidewinder, binary tree, and depth first search. Solutions can be found using depth first search, breadth first search, and A* search with multiple heuristics.
+                <br>
+                <br>
+                Originally designed to compare efficiency of algorithms for generating and solving mazes. Animation capability was added later to provide a visualization. 
+                <br>
+                <br>
+                Coded in Python with libraries including numpy and matplotlib.</p>
+                <br>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                <a class="btn btn-outline b1 btn-lg px-4" href="https://github.com/isaacbs/blocks">Source Code</a>
+            </div>
+        </div>
+        <div class="col-lg-6 offset-lg-0 p-lg-5 overflow-hidden">
+            <img class="img-fluid rounded-3 border" src="./animation5.gif" width = "1000" alt="">
+        </div>
+        </div>
     </div>
-  </div>
-<div class="centeredTop">
-  <a href="./index.html" class="button1">Home</a>
-  <a href="./portfolio.html" class="button1">Portfolio</a>
-  <!-- <a href="./pages/home2.html" class="button1">Photography</a> -->
-  <a href="./resume.html" class="button1">Resume</a>
-  <!-- <a href="./hobbies.html" class="button1">Hobbies</a> -->
-  <a href="./contact.html" class="button1">Contact</a>
-</div>
-<div class="resumeBox">
-  <div class="resumeImage">
-    <img src="./animation5.gif" alt="mazeGIF" width="100%">
-  </div>
-  <div class="resumeSubboxR">
-    <br>
-    <div class="resumeHeader">
-      MindMaze
     </div>
-    <div class="resumeSubheader">Algorithmically generated maze animations</div><br>
-    <div class="resumeText">
-      A randomized maze generator and animator. Supports run-time selection from generation algorithms including: Kruskal's, sidewinder, binary tree, and depth first search. Solutions can be found using depth first search, breadth first search, and A* search with multiple heuristics.
-    <br>
-    <br>
-      Originally designed to compare efficiency of algorithms for generating and solving mazes. Animation capability was added later to provide a visualization. 
-    <br>
-    <br>
-      Coded in Python with libraries including numpy and matplotlib.
-      <br><br><br><br>
+        
+    <div class="container my-5">
+        <div class="background1 rounded-3 p-0">
+        <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3">
+        <div class="col-lg-6 p-2 p-lg-5 pt-lg-3">
+            <div class="color2">
+                <h1 class="display-2 fw-bold lh-1">Echoes<small class="display-6 fw-normal fs-3"><br>A music based deep learning application</small></h1>
+                <p class="lead">A WIP project used as a documentation and exploration of my learning process for ML and deep learning. <br><br>
+                    Involves organization and manipulation of data in the form of audio files using numpy and pandas. Visualizations of the data were created with librosa, matplotlib, and seaborn.<br><br>
+                    Multiple models are trained on a data set of Bach compositions using SciKit learn and Pytorch.</p>
+            </div>
+            <br>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                <a class="btn btn-outline b2 btn-lg px-4" href="https://github.com/isaacbs/echoes">Source Code</a>
+            </div>
+        </div>
+        <div class="col-lg-6 offset-lg-0 p-lg-5 overflow-hidden">
+            <img class="img-fluid rounded-3 border" src="./spectogram.png" alt="">
+        </div>
+        </div>
+        </div>
     </div>
-    <a href="https://github.com/isaacbs/blocks" class="button1">Repo</a>
-  </div>
-    
-</div>
-<div class="resumeBox">
-  <div class="resumeSubboxL">
-    <br>
-    <div class="resumeHeader">
-      Echoes
+
+    <div class="container my-5">
+        <div class="background1 rounded-3 p-0">
+        <div class="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3">
+        <div class="col-lg-12 p-2 p-lg-5 pt-lg-3">
+            <div class="color3">
+                <h1 class="display-2 fw-bold lh-1">UMN Projects<small class="display-6 fw-normal fs-3"><br>Computer science curriculum projects</small></h1>
+                <ul class="lead">
+                    <li>An automated drone program which utilizes computer vision, image processing, design templates, and 3D motion to search an area for a target and send help to the location (C++)</li>
+                    <li>A concurrent producer-consumer banking scenario utilizing multithreading, semaphores, sockets and signals in order to achieve high performance (C)</li>
+                    <li>A tautology checker and Lisp interpreter written with functional programming (OCamL)</li>
+                    <li>A Battleship game (Java) and a player v. computer version of snake (Python)</li>
+                    <br>
+                </ul>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                <a class="btn btn-outline b3 btn-lg px-4" href="https://github.com/isaacbs/University-of-Minnesota-Projects">Source Code</a>
+            </div>
+        </div>
+
+        </div>
     </div>
-    <div class="resumeSubheader" >
-      A music based deep learning application
-    </div><br>
-    <div class="resumeText">
-      A WIP project used as a documentation and exploration of my learning process for ML and deep learning. <br><br>
-      Involves organization and manipulation of data in the form of audio files using numpy and pandas. Visualizations of the data were created with librosa, matplotlib, and seaborn.<br><br>
-      Multiple models are trained on a data set of Bach compositions using SciKit learn and Pytorch.<br><br><br><br><br>
     </div>
-    <a href="https://github.com/isaacbs/echoes" class="button1">Repo</a>
-  </div>
-  <div class="resumeImage">
-    <img src="./spectogram.png" alt="spectogram" width="100%">
-  </div>
-  
-</div>
-<div class="resumeBox">
-  <div class="resumeSubbox">
-  <div class="resumeHeader">University of Minnesota projects</div><br><br><br>
-  <div class="resumeSubheader">Projects completed during my college computer science curriculum</div><br>
-    <div class="resumeText">
-      <ul class="col1">
-        <li>An automated drone program which utilizes computer vision, image processing, design templates, and 3D motion to search an area for a target and send help to the location (C++)</li>
-        <li>A concurrent producer-consumer banking scenario utilizing multithreading, semaphores, sockets and signals in order to achieve high performance (C)</li>
-        <li>A tautology checker and Lisp interpreter written with functional programming (OCamL)</li>
-        <li>A Battleship game (Java) and a player v. computer version of snake (Python)</li>
-      </ul>
-    </div>
-  </div>
-</div>
 
 
-
-
-
-</body>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+        <sript src="boots/js/bootstrap.js"></sript>
+    </body>
 </html>

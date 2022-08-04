@@ -1,197 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Resume</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./styles/resume.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <title>Resume</title>
+
+        <style>
+      
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+      
+            .bi {
+              vertical-align: -.125em;
+              fill: currentColor;
+            }
+      
+            .nav-scroller {
+              position: relative;
+              z-index: 2;
+              height: 2.75rem;
+              overflow-y: hidden;
+            }
+      
+            .nav-scroller .nav {
+              display: flex;
+              flex-wrap: nowrap;
+              padding-bottom: 1rem;
+              margin-top: -1px;
+              overflow-x: auto;
+              text-align: center;
+              white-space: nowrap;
+              -webkit-overflow-scrolling: touch;
+            }
+          </style>
+          <link href="main.css" rel="stylesheet">
+    </head>
     <script type="text/javascript" src="warpspeed.min.js"></script>
     <script type="text/javascript" src="warpspeed.js"></script>
-</head>
-<body>
-  <div id="backround">
-    <div style="position:fixed; z-index:-1; top:0; left:0; width:100%; height:100%;">
-        <canvas id="canvas" style="width:100%; height:100%;"></canvas>
-        <script type="text/javascript">
-          background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
-    </div>
-  </div>
-  <!-- Navigation Buttons - Placed at the top of the page -->
-<div class="centeredTop">
-    <a href="./index.html" class="button1">Home</a>
-    <a href="./portfolio.html" class="button1">Portfolio</a>
-    <!-- <a href="./pages/home2.html" class="button1">Photography</a> -->
-    <a href="./resume.html" class="button1">Resume</a>
-    <!-- <a href="./hobbies.html" class="button1">Hobbies</a> -->
-    <a href="./contact.html" class="button1">Contact</a>
-</div>
 
-  <!--Text boxes for resume-->
-<div class="resumeBox">
-  <div class="resumeName">
-    Isaac Blaine-Sauer
-  </div>
-  <div class="resumeHeader">
-    Experience
-  </div>
+    <body>
+        <!-- Code for background effects -->
+        <div id="backround">
+            <div style="position:fixed; z-index:-1; top:0; left:0; width:100%; height:100%;">
+                <canvas id="canvas" style="width:100%; height:100%;"></canvas>
+                <script type="text/javascript">
+                background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
+            </div>
+        </div>
+        <!-- Code for navbar -->
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <nav class="navbar navbar-expand-md navbar-dark">
+                        <a href="./index.html" class="navbar-brand">
+                            Isaac Blaine-Sauer</a>
+                        <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#toggleMobileMenu"
+                        aria-controls="toggleMobileMenu"
+                        aria-expanded="false"
+                        aria-lable="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                            <ul class="navbar-nav ms-auto">
+                                <li>
+                                    <a class="nav-link" href="./portfolio.html">Portfolio</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./resume.html">Resume</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./contact.html">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        </div>
+        <!-- Code for resume -->
+        <div class="container my-5">
+            <div class="background1 rounded-3 p-0">
+                <div class="row p-4 pb-lg-0 pe-lg-0 pt-lg-5 align-items-center rounded-3">
+                    <div class="col-lg-12 p-2 p-lg-5 pb-lg-0 pt-lg-3">
+                        <div class="color4">
+                            <h1 class="display-2 fw-bold lh-1">Isaac Blaine-Sauer<br><small class="fw-bold fs-1">Experience</small></h1>
+                            <div class="fw-normal fs-2">Developer Intern - <i>HealthPartners Health Insurance</i></div>
+                            <div class="fw-normal fs-5">May 2022 - Present</div>
+                            <ul class="lead">
+                                <li>Developed consumer facing web applications to facilitate fluid access to health insurance resources as part of the consumer engagement management team.</li>
+                                <li>Implemented solutions with ReactJS and SQL, and created consumer facing content with CSS and HTML.</li>
+                                <li>Collaborated with other developers, DataOps, and product owners as part of Agile scrum and kanban teams.</li>
+                            </ul>
 
-  <div class="resumeSubheader">
-    Developer Intern - <span>HealthPartners Health Insurance</span>
-  </div>
-  <div class="resumeDate">May 2022 - Present</div>
-  <div class="resumeText">
-    <ul class="col1">
-      <li>Developed consumer facing web applications to facilitate fluid access to health insurance resources as part of the consumer engagement management team.</li>
-      <li>Implemented solutions with ReactJS and SQL, and created consumer facing content with CSS and HTML.</li>
-      <li>Collaborated with other developers, DataOps, and product owners as part of Agile scrum and kanban teams.</li>
-    </ul>
-  </div>
-  <div class="resumeSubheader">
-    Resource Coordinator - <span>University of Minnesota Driven to Discover</span>
-  </div>
-  <div class="resumeDate">June 2021 - September 2021</div>
-  <div class="resumeText">
-    <ul class="col1">
-      <li>Managed a team of 11 for an event with over 60,000 annual participants.</li>
-      <li>Determined and met supply and logistical needs for 43 research teams.</li>
-      <li>Optimized purchasing of resources from multiple vendors to reduce total cost by 17% compared to previous year.</li>
-    </ul>
-  </div>
-  <div class="resumeSubheader">
-    Founder - <span>Blaine-Sauer Landscaping</span>
-  </div>
-  <div class="resumeDate">May 2016 - September 2020</div>
-  <div class="resumeText">
-    <ul class="col1">
-      <li>Founded a lawn care and landscaping business with 30+ regular clients.</li>
-      <li>Managed payment collection, business development, communication, job scheduling, hiring and supervision of employees.</li>
-    </ul>  
-  </div>
-  <div class="resumeHeader">Skills</div>
-  <div class="resumeSubheader">Programming Languages</div>
-  <div class="resumeText">
-    <ul class="col4">
-      <li>Python</li>
-      <li>C</li>
-      <li>C++</li>
-      <li>Java</li>
-      <li>JavaScript</li>
-      <li>Ocaml</li>
-      <li>MATLAB</li>
-      <li>R</li>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>Assembly</li>
-    </ul>
-  </div>
-  <div class="resumeSubheader">Software Development</div>
-  <div class="resumeText">
-    <ul class="col3">
-      <li>Docker</li>
-      <li>Git/GitHub</li>
-      <li>Agile Scrum/Kanban</li>
-      <li>SQL</li>
-      <li>Bash</li>
-      <li>AWS EC2/S3</li>
-    </ul>
-  </div>
-  <div class="resumeSubheader">Machine Learning</div>
-  <div class="resumeText">
-    <ul class="col3">
-      <li>Scikit Learn</li>
-      <li>PyTorch</li>
-      <li>Jupyter Notebook</li>
-      <li>SVMs</li>
-      <li>RNNs</li>
-      <li>CNNs</li>
-    </ul>
-  </div>
-  <div class="resumeSubheader">Data Manipulation and Visualization</div>
-  <div class="resumeText">
-    <ul class="col3">
-      <li>Numpy</li>
-      <li>Pandas</li>
-      <li>Matplotlib</li>
-      <li>Seaborn</li>
-      <li>Librosa</li>
-    </ul>
-  </div>
+                            <div class="fw-normal fs-2">Resource Coordinator - <i>University of Minnesota Driven to Discover</i></div>
+                            <div class="fw-normal fs-5">June 2021 - September 2021</div>
+                            <ul class="lead">
+                                <li>Developed consumer facing web applications to facilitate fluid access to health insurance resources as part of the consumer engagement management team.</li>
+                                <li>Implemented solutions with ReactJS and SQL, and created consumer facing content with CSS and HTML.</li>
+                                <li>Collaborated with other developers, DataOps, and product owners as part of Agile scrum and kanban teams.</li>
+                            </ul>
 
+                            <div class="fw-normal fs-2">Landscaper - <i>Blaine-Sauer Landscaping</i></div>
+                            <div class="fw-normal fs-5">May 2016 - September 2020</div>
+                            <ul class="lead">
+                                <li>Started a lawn care and landscaping business with 30+ regular clients.</li>
+                                <li>Managed payment collection, business development, communication, job scheduling, hiring and supervision of employees.</li>
+                            </ul>  
+                        </div>
+                    </div>
+                </div>
+                <div class="color4">
+                    <div class="row p-4 pt-lg-4 pb-0 pe-lg-0 align-items-start rounded-3">
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-3 pt-lg-0">
+                            <div class="fw-bold fs-1">Skills</div>
+                            <div class="fw-normal fs-2">Programming Languages</div>
+                        </div>
+                        <div class="col-lg-3 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Python</li>
+                                <li>C</li>
+                                <li>C++</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Java</li>
+                                <li>JavaScript</li>
+                                <li>Ocaml</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>MATLAB</li>
+                                <li>R</li>
+                                <li>HTML5</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>CSS</li>
+                                <li>Assembly</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row p-4 pt-0 pb-0 pe-lg-0 align-items-start rounded-3">
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-3 pt-lg-0">
+                            <div class="fw-normal fs-2">Software Development</div>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Docker</li>
+                                <li>Git/GitHub</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Agile Scrum/Kanban</li>
+                                <li>SQL</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Bash</li>
+                                <li>AWS EC2/S3</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row p-4 pt-0 pb-0 pe-lg-0 align-items-start rounded-3">
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-3 pt-lg-0">
+                            <div class="fw-normal fs-2">Machine Learning</div>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>SciKit Learn</li>
+                                <li>PyTorch</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Jupyter Notebook</li>
+                                <li>SVMs</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>RNNs</li>
+                                <li>CNNs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row p-4 pt-0 pb-2 pe-lg-0 align-items-start rounded-3">
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-3 pt-lg-0">
+                            <div class="fw-normal fs-2">Data Manipulation and Visualization</div>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Numpy</li>
+                                <li>Pandas</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Matplotlib</li>
+                                <li>Seaborn</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Librosa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="color4">
+                    <div class="row p-4 pe-lg-0 pt-lg-3 pb-lg-0 align-items-center rounded-3">
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                                <div class="fw-bold fs-1">Education</div>
+                                <div class="fw-normal fs-2">Bachelors of Science in Computer Science - <i>University of Minnesota Twin Cities</i></div>
+                                <div class="fw-normal fs-5">August 2019 - May 2023</div>
+                                <ul class="lead">
+                                    <li>GPA: 3.89/4.00</li>
+                                </ul>
+                        </div>
+                    </div>
+                    <div class="row p-4 pe-lg-0 pt-lg-0 pb-lg-0 align-items-center rounded-3">
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <div class="fw-normal fs-2">Relevant Coursework</div>
+                        </div>
+                        <div class="col-lg-6 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Data Structures and Algorithms</li>
+                                <li>Advanced Programming Principles</li>
+                                <li>Computer Architecture and Organiziation</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Introduction to Operating Systems</li>
+                                <li>Introduction to Artificial Intelligence</li>
+                                <li>Program Design and Development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row p-4 pe-lg-0 pt-0 align-items-center rounded-3">
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <div class="fw-normal fs-2">Extracurriculars</div>
+                            <div class="fw-normal fs-5">August 2019 - Present</div>
+                        </div>
+                        <div class="col-lg-12 p-2 p-lg-5 pb-lg-0 pt-lg-0">
+                            <ul class="lead">
+                                <li>Concertmaster of the University of Minnesota Campus Orchestra</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+        <sript src="boots/js/bootstrap.js"></sript>
 
-
-
-
-
-
-  <div class="resumeHeader">
-    Education
-  </div>
-  <div class="resumeSubheader">
-    Bachelors of Science in Computer Science - <span>University of Minnesota Twin Cities</span>
-  </div>
-  <div class="resumeDate">August 2019 - May 2023</div>
-  <div class="resumeText">GPA: 3.89</div>
-  <div class="resumeSubheader">
-    Relevant Coursework
-  </div>
-  <div class="resumeText">
-    <ul class="col2">
-      <li>Data Structures and Algorithms</li>
-      <li>Advanced Programming Principles</li>
-      <li>Computer Architecture and Organiziation</li>
-      <li>Introduction to Operating Systems</li>
-      <li>Introduction to Artificial Intelligence</li>
-      <li>Program Design and Development</li>
-    </ul>
-  </div>
-  <div class="resumeSubheader">
-    Extracurriculars
-  </div>
-  <div class="resumeDate">August 2019 - Present</div>
-  <div class="resumeText">
-    Consertmaster of the University of Minnesota Campus Orchestra
-  </div>
-  <div class="resumeHeader">
-    Service Experience
-  </div>
-  <div class="resumeSubheader">
-    Music Ensemble - <span> Spirit of Saint Stephen's Catholic Community</span>
-  </div>
-  <div class="resumeDate">
-    Fall 2012 - Fall 2020
-  </div>
-  <div class="resumeText">
-    Led and assisted organization of a youth music ensemble responsible for performing at one service per month.
-  </div>
-  <div class="resumeSubheader">
-    Hospital Assistant - <span> Hennepin Healthcare</span>
-  </div>
-  <div class="resumeDate">
-    May 2018 - February 2019
-  </div>
-  <div class="resumeText">
-    Welcomed patients to the hospital. Assisted nurses and other hospital employees.
-  </div>
-  <div class="resumeSubheader">
-    Lasallian Ministry - <span> DeLaSalle High School</span>
-  </div>
-  <div class="resumeDate">
-    August 2016 - May 2019
-  </div>
-  <div class="resumeText">
-    Assisted in the organization of a prom for people with disabilities.
-  </div>
-
-
-
-
-
-
-
-
-
-</div>
-
-
-</body>
+    </body>
 </html>
