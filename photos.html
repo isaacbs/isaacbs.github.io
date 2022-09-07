@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <title>Isaac Blaine-Sauer</title>
+
+        <style>
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+    
+            .bi {
+              vertical-align: -.125em;
+              fill: currentColor;
+            }
+      
+            .nav-scroller {
+              position: relative;
+              z-index: 2;
+              height: 2.75rem;
+              overflow-y: hidden;
+            }
+      
+            .nav-scroller .nav {
+              display: flex;
+              flex-wrap: nowrap;
+              padding-bottom: 1rem;
+              margin-top: -1px;
+              overflow-x: auto;
+              text-align: center;
+              white-space: nowrap;
+              -webkit-overflow-scrolling: touch;
+            }
+          </style>
+          <link href="main.css" rel="stylesheet">
+    </head>
+    <script type="text/javascript" src="warpspeed.min.js"></script>
+    <script type="text/javascript" src="warpspeed.js"></script>
+
+    <body>
+        <div id="backround">
+            <div style="position:fixed; z-index:-1; top:0; left:0; width:100%; height:100%;">
+                <canvas id="canvas" style="width:100%; height:100%;"></canvas>
+                <script type="text/javascript">
+                background = new WarpSpeed("canvas", {starColor: ColorStar(), backgroundColor:ColorBackground(), speed:RandomSpeed(), warpEffectLength:8, density:1, starSize: RandomizeSize() });</script>
+            </div>
+        </div>
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <nav class="navbar navbar-expand-md navbar-dark">
+                        <a href="./index.html" class="navbar-brand">
+                            Isaac Blaine-Sauer</a>
+                        <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#toggleMobileMenu"
+                        aria-controls="toggleMobileMenu"
+                        aria-expanded="false"
+                        aria-lable="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                            <ul class="navbar-nav ms-auto">
+                                <li>
+                                    <a class="nav-link" href="./portfolio.html">Portfolio</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./resume.html">Resume</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="./contact.html">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        <div class="containermid d-flex align-items-start justify-content-center mt-auto">
+            <div id="carouselExampleInterval" class="carousel slide w-50" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="./images/101.jpg" width="50%" class="d-block w-100 center" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="./images/102.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/103.jpg" class="d-block w-100" alt="...">
+                </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+<sript src="boots/js/bootstrap.js"></sript>
+
+</body>
+</html>
