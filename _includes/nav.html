@@ -1,0 +1,19 @@
+<header class="site-header p-3">
+  <nav class="navbar navbar-expand-md navbar-dark" aria-label="Main">
+    <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+            aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-nav">
+      <ul class="navbar-nav ms-auto">
+        {%- for item in site.data.navigation %}
+        <li class="nav-item">
+          <a class="nav-link{% if page.url == item.url %} active{% endif %}" href="{{ item.url | relative_url }}"
+             {%- if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </nav>
+</header>

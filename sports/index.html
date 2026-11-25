@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sports Calendar Builder</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14171c;--mute:#6a7381;--line:#e2e5ea;--acc:#1d6fe0;--accink:#fff;--sel:#e8f1fd}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1216;--card:#181c22;--ink:#eceff3;--mute:#98a1ae;--line:#2a303a;--acc:#4b8ff0;--accink:#08111f;--sel:#17263d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:84px}
+header{padding:20px 16px 8px;max-width:1100px;margin:0 auto}
+h1{margin:0;font-size:22px}
+header p{margin:4px 0 0;color:var(--mute)}
+.layout{display:grid;grid-template-columns:200px 1fr;gap:16px;max-width:1100px;margin:12px auto;padding:0 16px}
+@media (max-width:720px){.layout{grid-template-columns:1fr}}
+nav{display:flex;flex-direction:column;gap:2px}
+@media (max-width:720px){nav{flex-direction:row;overflow-x:auto;padding-bottom:6px}nav .grp{display:none}}
+nav .grp{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:12px 8px 4px}
+nav button{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;border:0;background:none;color:var(--ink);padding:8px 10px;border-radius:8px;cursor:pointer;font:inherit;white-space:nowrap}
+nav button:hover{background:var(--line)}
+nav button.on{background:var(--acc);color:var(--accink)}
+nav .n{font-size:12px;background:var(--sel);color:var(--acc);border-radius:10px;padding:0 7px}
+nav button.on .n{background:rgba(255,255,255,.25);color:inherit}
+.toolbar{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+input[type=search],select{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+input[type=search]{flex:1;min-width:160px}
+button.btn{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
+button.pri{background:var(--acc);color:var(--accink);border-color:var(--acc);font-weight:600}
+button:disabled{opacity:.5;cursor:default}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.team{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;font:inherit;color:var(--ink)}
+.team.on{border-color:var(--acc);background:var(--sel)}
+.team img{width:28px;height:28px;object-fit:contain;flex:none}
+.team .ph{width:28px;height:28px;border-radius:50%;background:var(--line);flex:none}
+.team span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.team .ck{flex:none;width:18px;height:18px;border:2px solid var(--line);border-radius:5px;display:grid;place-items:center;font-size:12px;line-height:1}
+.team.on .ck{background:var(--acc);border-color:var(--acc);color:var(--accink)}
+.msg{color:var(--mute);padding:14px 2px}
+.msg.err{color:#c0392b}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px}
+.bar>div{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:space-between}
+#summary{color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#result{max-width:1100px;margin:16px auto;padding:0 16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.panel h2{margin:0 0 8px;font-size:17px}
+.opts{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 12px;align-items:center}
+.opts label{display:flex;gap:6px;align-items:center}
+.month{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:14px 0 4px}
+.ev{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line)}
+.ev .t{color:var(--mute);font-size:13px}
+.ev .l{color:var(--mute);font-size:13px}
+@media (max-width:560px){.ev{grid-template-columns:1fr;gap:0}}
+.how{color:var(--mute);font-size:13px;margin-top:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Sports Calendar Builder</h1>
+  <p>Pick your teams and series, then download one calendar file for your phone.</p>
+</header>
+<div class="layout">
+  <nav id="leagues"></nav>
+  <main>
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search teams">
+      <button class="btn" id="all">Select all</button>
+      <button class="btn" id="none">Clear league</button>
+    </div>
+    <div id="status" class="msg"></div>
+    <div id="teams" class="grid"></div>
+  </main>
+</div>
+<section id="result" hidden></section>
+<div class="bar"><div>
+  <div id="summary">Nothing selected yet</div>
+  <button class="btn pri" id="build" disabled>Build calendar</button>
+</div></div>
+
+<script>
+// <core>
+const HOUR = 3600e3;
+const pad = n => String(n).padStart(2, '0');
+
+// Leagues. kind 'team' = pick teams; 'series' = follow the whole series (races, tournaments).
+// dur = typical event length in hours (used for the calendar end time).
+const LEAGUES = [
+  {key:'nfl',  group:'US pro',  name:'NFL',  path:'football/nfl', dur:3.5},
+  {key:'nba',  group:'US pro',  name:'NBA',  path:'basketball/nba', dur:2.5},
+  {key:'mlb',  group:'US pro',  name:'MLB',  path:'baseball/mlb', dur:3},
+  {key:'nhl',  group:'US pro',  name:'NHL',  path:'hockey/nhl', dur:2.5},
+  {key:'wnba', group:'US pro',  name:'WNBA', path:'basketball/wnba', dur:2},
+  {key:'mls',  group:'US pro',  name:'MLS',  path:'soccer/usa.1', dur:2, soccer:true},
+  {key:'nwsl', group:'US pro',  name:'NWSL', path:'soccer/usa.nwsl', dur:2, soccer:true},
+  {key:'cfb',  group:'College', name:'College Football', path:'football/college-football', teamQuery:'groups=80', dur:3.5},
+  {key:'mcbb', group:'College', name:"Men's College Basketball", path:'basketball/mens-college-basketball', teamQuery:'groups=50', dur:2.25},
+  {key:'wcbb', group:'College', name:"Women's College Basketball", path:'basketball/womens-college-basketball', teamQuery:'groups=50', dur:2},
+  {key:'epl',  group:'Soccer',  name:'Premier League', path:'soccer/eng.1', dur:2, soccer:true},
+  {key:'liga', group:'Soccer',  name:'La Liga', path:'soccer/esp.1', dur:2, soccer:true},
+  {key:'bund', group:'Soccer',  name:'Bundesliga', path:'soccer/ger.1', dur:2, soccer:true},
+  {key:'seriea',group:'Soccer', name:'Serie A', path:'soccer/ita.1', dur:2, soccer:true},
+  {key:'lig1', group:'Soccer',  name:'Ligue 1', path:'soccer/fra.1', dur:2, soccer:true},
+  {key:'ucl',  group:'Soccer',  name:'Champions League', path:'soccer/uefa.champions', dur:2, soccer:true},
+  {key:'f1',   group:'Racing & golf', name:'Formula 1', short:'F1', kind:'series', path:'racing/f1', dur:2, sessionDur:1.25},
+  {key:'nascar',group:'Racing & golf', name:'NASCAR Cup', short:'NASCAR', kind:'series', path:'racing/nascar-premier', dur:3.5, sessionDur:1},
+  {key:'indy', group:'Racing & golf', name:'IndyCar', short:'IndyCar', kind:'series', path:'racing/irl', dur:3, sessionDur:1},
+  {key:'pga',  group:'Racing & golf', name:'PGA Tour', short:'PGA', kind:'series', path:'golf/pga', multiday:true, dur:4},
+];
+const BASE = 'https://site.api.espn.com/apis/site/v2/sports/';
+
+function venueStr(v){
+  if (!v) return '';
+  const a = v.address || {};
+  return [v.fullName, a.city, a.state || a.country].filter(Boolean).join(', ');
+}
+function etDay(d){ // YYYYMMDD in US Eastern (where "time TBD" placeholders are set)
+  return new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(d).replace(/-/g,'');
+}
+function shiftDay(s, n){
+  const t = new Date(Date.UTC(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8)+n));
+  return t.getUTCFullYear()+pad(t.getUTCMonth()+1)+pad(t.getUTCDate());
+}
+function icsDate(d){
+  return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';
+}
+function esc(s){
+  return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');
+}
+function fold(line){ // RFC 5545: max 75 octets per line, continuation lines start with a space
+  const enc = new TextEncoder(); const parts = []; let cur = '', n = 0;
+  for (const ch of line){
+    const b = enc.encode(ch).length;
+    if (n + b > 75){ parts.push(cur); cur = ' '; n = 1; }
+    cur += ch; n += b;
+  }
+  parts.push(cur);
+  return parts.join('\r\n');
+}
+
+// One game from a team schedule -> internal event
+function normTeamEvent(ev, lg, team){
+  const comp = (ev.competitions && ev.competitions[0]) || {};
+  const cs = comp.competitors || [];
+  const me = cs.find(c => c.team && String(c.team.id) === String(team.id)) || null;
+  const opp = cs.find(c => c !== me) || null;
+  const short = c => c && c.team && (c.team.shortDisplayName || c.team.displayName || c.team.location || c.team.name);
+  const long  = c => c && c.team && (c.team.displayName || short(c));
+  const start = new Date(ev.date || comp.date);
+  if (isNaN(start)) return null;
+  const st = comp.status && comp.status.type && comp.status.type.name || '';
+  if (/CANCEL/i.test(st)) return null;
+  const neutral = !!comp.neutralSite;
+  const joiner = (me && me.homeAway === 'home') || neutral ? 'vs' : 'at';
+  let title = (me && opp)
+    ? `${short(me) || team.shortDisplayName || team.displayName} ${joiner} ${short(opp)}`
+    : (ev.shortName || ev.name || 'Game');
+  if (/POSTPON/i.test(st)) title = 'POSTPONED: ' + title;
+  const home = cs.find(c => c.homeAway === 'home'), away = cs.find(c => c.homeAway === 'away');
+  const tv = (comp.broadcasts || []).flatMap(b => b.media ? [b.media.shortName] : (b.names || [])).filter(Boolean);
+  const desc = [lg.name, (home && away) ? `${long(away)} at ${long(home)}` : (ev.name || ''), tv.length ? 'TV: ' + [...new Set(tv)].join(', ') : '']
+    .filter(Boolean).join('\n');
+  const allDay = comp.timeValid === false;
+  return {
+    uid: `${lg.key}-${ev.id}@sports-calendar`, title, start, end: new Date(start.getTime() + lg.dur*HOUR),
+    allDay, day: allDay ? etDay(start) : null,
+    location: venueStr(comp.venue || ev.venue), desc, league: lg.key,
+    home: neutral ? null : (me ? me.homeAway === 'home' : null)
+  };
+}
+
+// One race weekend / tournament -> one or more internal events
+function normSeriesEvents(ev, lg, opts){
+  const out = [];
+  const base = new Date(ev.date || ev.startDate);
+  if (isNaN(base)) return out;
+  const loc = venueStr(ev.circuit || ev.venue || (ev.competitions && ev.competitions[0] && ev.competitions[0].venue));
+  const tag = lg.short || lg.name;
+  const mk = (suffix, title, start, durH, extra) => ({
+    uid: `${lg.key}-${ev.id}-${suffix}@sports-calendar`, title, start, end: new Date(start.getTime() + durH*HOUR),
+    allDay: false, day: null, location: loc, desc: `${lg.name}\n${ev.name || ''}`, league: lg.key, home: null, ...extra
+  });
+  const endRaw = ev.endDate ? new Date(ev.endDate) : null;
+  const spansDays = endRaw && !isNaN(endRaw) && (endRaw - base) >= 20*HOUR;
+  if (lg.multiday){
+    const e = mk('all', `${tag}: ${ev.name}`, base, lg.dur, {allDay: true, day: etDay(base), endDay: spansDays ? etDay(endRaw) : etDay(base)});
+    out.push(e); return out;
+  }
+  const comps = (ev.competitions || []).filter(c => c.date || c.startDate);
+  if (comps.length > 1){
+    const label = c => (c.type && (c.type.text || c.type.abbreviation)) || 'Session';
+    const isRace = c => /^race$/i.test((c.type && (c.type.abbreviation || c.type.text)) || '');
+    const race = comps.find(isRace) || comps[comps.length - 1];
+    for (const c of comps){
+      const d = new Date(c.date || c.startDate); if (isNaN(d)) continue;
+      if (c === race) out.push(mk('race', `${tag}: ${ev.name}`, d, lg.dur));
+      else if (opts && opts.sessions) out.push(mk(String(c.id || label(c)), `${tag}: ${ev.name} – ${label(c)}`, d, lg.sessionDur || 1.5));
+    }
+    return out;
+  }
+  if (spansDays) out.push(mk('all', `${tag}: ${ev.name}`, base, lg.dur, {allDay: true, day: etDay(base), endDay: etDay(endRaw)}));
+  else out.push(mk('race', `${tag}: ${ev.name}`, base, lg.dur));
+  return out;
+}
+
+function buildICS(events, {name = 'My Sports Schedule', alarmMin = 0, now = new Date()} = {}){
+  const L = []; const add = s => L.push(fold(s));
+  add('BEGIN:VCALENDAR'); add('VERSION:2.0'); add('PRODID:-//Sports Calendar Builder//EN');
+  add('CALSCALE:GREGORIAN'); add('METHOD:PUBLISH'); add('X-WR-CALNAME:' + esc(name));
+  for (const e of events){
+    add('BEGIN:VEVENT'); add('UID:' + e.uid); add('DTSTAMP:' + icsDate(now));
+    if (e.allDay){
+      add('DTSTART;VALUE=DATE:' + e.day);
+      add('DTEND;VALUE=DATE:' + shiftDay(e.endDay || e.day, 1));
+    } else {
+      add('DTSTART:' + icsDate(e.start)); add('DTEND:' + icsDate(e.end));
+    }
+    add('SUMMARY:' + esc(e.title));
+    if (e.location) add('LOCATION:' + esc(e.location));
+    if (e.desc) add('DESCRIPTION:' + esc(e.desc));
+    if (alarmMin > 0 && !e.allDay){
+      add('BEGIN:VALARM'); add('TRIGGER:-PT' + alarmMin + 'M'); add('ACTION:DISPLAY'); add('DESCRIPTION:' + esc(e.title)); add('END:VALARM');
+    }
+    add('END:VEVENT');
+  }
+  add('END:VCALENDAR');
+  return L.join('\r\n') + '\r\n';
+}
+
+// raw = [{lg, team, data}] -> filtered, de-duplicated, sorted events
+function computeEvents(raw, opts, now = new Date()){
+  const map = new Map();
+  for (const r of raw){
+    let evs = [];
+    if (r.lg.kind === 'series'){
+      let list = r.data.events || [];
+      if (!list.length){
+        const cal = (r.data.leagues && r.data.leagues[0] && r.data.leagues[0].calendar) || [];
+        list = cal.filter(c => c && c.startDate).map(c => ({id: String(c.label).toLowerCase().replace(/\W+/g,'-'), name: c.label, date: c.startDate, endDate: c.endDate}));
+      }
+      for (const ev of list) evs.push(...normSeriesEvents(ev, r.lg, opts));
+    } else {
+      for (const ev of (r.data.events || [])){ const e = normTeamEvent(ev, r.lg, r.team); if (e) evs.push(e); }
+    }
+    for (const e of evs){
+      if (opts.homeOnly && r.lg.kind !== 'series' && e.home !== true) continue;
+      if (opts.upcomingOnly && e.end < now) continue;
+      if (!map.has(e.uid)) map.set(e.uid, e);
+    }
+  }
+  return [...map.values()].sort((a, b) => a.start - b.start);
+}
+// </core>
+
+// ---------------- UI ----------------
+const $ = id => document.getElementById(id);
+const state = {league: LEAGUES[0].key, teams: {}, selected: new Map(), raw: [], opts: {upcomingOnly: true, homeOnly: false, sessions: false, alarm: 0}, q: ''};
+const lgByKey = k => LEAGUES.find(l => l.key === k);
+
+function h(tag, attrs = {}, ...kids){
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)){
+    if (k === 'class') el.className = v; else if (k.startsWith('on')) el.addEventListener(k.slice(2), v); else if (v !== false && v != null) el.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of kids.flat()) if (c != null) el.append(c.nodeType ? c : document.createTextNode(c));
+  return el;
+}
+
+function save(){ try { localStorage.setItem('sportscal.sel', JSON.stringify([...state.selected.values()])); } catch(e){} }
+function load(){ try { const a = JSON.parse(localStorage.getItem('sportscal.sel') || '[]'); for (const s of a) state.selected.set(s.k, s); } catch(e){} }
+
+async function getJSON(url){
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+}
+
+async function loadTeams(lg){
+  if (state.teams[lg.key]) return state.teams[lg.key];
+  if (lg.kind === 'series'){
+    return state.teams[lg.key] = [{id: 'series', displayName: lg.name + ' (every race)', logo: ''}];
+  }
+  const url = `${BASE}${lg.path}/teams?limit=500` + (lg.teamQuery ? '&' + lg.teamQuery : '');
+  const j = await getJSON(url);
+  const raw = ((j.sports || [])[0] || {}).leagues; const list = (raw && raw[0] && raw[0].teams || []).map(t => t.team);
+  const teams = list.map(t => ({id: String(t.id), displayName: t.displayName, shortDisplayName: t.shortDisplayName, logo: (t.logos && t.logos[0] && t.logos[0].href) || ''}))
+    .sort((a, b) => a.displayName.localeCompare(b.displayName));
+  return state.teams[lg.key] = teams;
+}
+
+function renderNav(){
+  const nav = $('leagues'); nav.replaceChildren();
+  let grp = '';
+  for (const lg of LEAGUES){
+    if (lg.group !== grp){ grp = lg.group; nav.append(h('div', {class: 'grp'}, grp)); }
+    const n = [...state.selected.values()].filter(s => s.lg === lg.key).length;
+    nav.append(h('button', {class: lg.key === state.league ? 'on' : '', onclick: () => { state.league = lg.key; state.q = ''; $('q').value = ''; showLeague(); }}, lg.name, n ? h('span', {class: 'n'}, n) : null));
+  }
+}
+
+function renderSummary(){
+  const n = state.selected.size;
+  $('summary').textContent = n ? `${n} selected: ` + [...state.selected.values()].map(s => s.name).join(', ') : 'Nothing selected yet';
+  $('build').disabled = !n;
+}
+
+function renderTeams(){
+  const lg = lgByKey(state.league), box = $('teams'); box.replaceChildren();
+  const q = state.q.trim().toLowerCase();
+  for (const t of (state.teams[lg.key] || [])){
+    if (q && !t.displayName.toLowerCase().includes(q)) continue;
+    const k = lg.key + ':' + t.id, on = state.selected.has(k);
+    box.append(h('button', {class: 'team' + (on ? ' on' : ''), 'aria-pressed': on, onclick: () => toggle(lg, t)},
+      t.logo ? h('img', {src: t.logo, alt: '', loading: 'lazy', onerror: e => e.target.replaceWith(h('div', {class: 'ph'}))}) : h('div', {class: 'ph'}),
+      h('span', {}, t.displayName), h('div', {class: 'ck'}, on ? '✓' : '')));
+  }
+}
+
+function toggle(lg, t, force){
+  const k = lg.key + ':' + t.id, on = force != null ? force : !state.selected.has(k);
+  if (on) state.selected.set(k, {k, lg: lg.key, id: t.id, name: lg.kind === 'series' ? lg.name : t.displayName, short: t.shortDisplayName, logo: t.logo});
+  else state.selected.delete(k);
+  save(); renderTeams(); renderNav(); renderSummary();
+}
+
+async function showLeague(){
+  const lg = lgByKey(state.league); renderNav();
+  $('status').textContent = ''; $('status').className = 'msg';
+  $('all').hidden = $('none').hidden = lg.kind === 'series';
+  try {
+    if (!state.teams[lg.key]){ $('status').textContent = 'Loading teams…'; $('teams').replaceChildren(); }
+    await loadTeams(lg);
+    if (state.league === lg.key){ $('status').textContent = ''; renderTeams(); }
+  } catch(e){
+    $('status').className = 'msg err';
+    $('status').textContent = `Couldn't load ${lg.name} teams (${e.message}). If you opened this file in a way that blocks network requests, try hosting it or opening it in a regular browser tab.`;
+  }
+}
+
+async function pool(items, size, fn){
+  let i = 0;
+  await Promise.all(Array.from({length: Math.min(size, items.length)}, async () => { while (i < items.length){ const it = items[i++]; await fn(it); } }));
+}
+
+async function build(){
+  const sel = [...state.selected.values()], year = new Date().getFullYear(), jobs = [];
+  for (const s of sel){
+    const lg = lgByKey(s.lg); if (!lg) continue;
+    if (lg.kind === 'series'){
+      for (const y of [year, year + 1]) jobs.push({lg, team: s, url: `${BASE}${lg.path}/scoreboard?dates=${y}&limit=100`, optional: y !== year});
+    } else {
+      const root = `${BASE}${lg.path}/teams/${s.id}/schedule`;
+      jobs.push({lg, team: s, url: root});
+      jobs.push({lg, team: s, url: lg.soccer ? root + '?fixture=true' : root + '?season=' + (year + 1), optional: true});
+    }
+  }
+  const raw = [], failed = new Set(); let done = 0;
+  $('build').disabled = true;
+  const res = $('result'); res.hidden = false; res.replaceChildren(h('div', {class: 'panel'}, h('div', {id: 'prog', class: 'msg'}, 'Fetching schedules…')));
+  res.scrollIntoView({behavior: 'smooth'});
+  await pool(jobs, 6, async job => {
+    try { raw.push({lg: job.lg, team: job.team, data: await getJSON(job.url)}); }
+    catch(e){ if (!job.optional) failed.add(job.team.name); }
+    $('prog').textContent = `Fetching schedules… ${++done}/${jobs.length}`;
+  });
+  state.raw = raw; state.failed = [...failed]; $('build').disabled = !state.selected.size;
+  renderResult();
+}
+
+function renderResult(){
+  const res = $('result'), o = state.opts;
+  const events = computeEvents(state.raw, o);
+  const anySeries = [...state.selected.values()].some(s => (lgByKey(s.lg) || {}).kind === 'series');
+  const optsRow = h('div', {class: 'opts'},
+    h('label', {}, h('input', {type: 'checkbox', checked: o.upcomingOnly, onchange: e => { o.upcomingOnly = e.target.checked; renderResult(); }}), 'Upcoming only'),
+    h('label', {}, h('input', {type: 'checkbox', checked: o.homeOnly, onchange: e => { o.homeOnly = e.target.checked; renderResult(); }}), 'Home games only'),
+    anySeries ? h('label', {}, h('input', {type: 'checkbox', checked: o.sessions, onchange: e => { o.sessions = e.target.checked; renderResult(); }}), 'Include practice/qualifying') : null,
+    h('label', {}, 'Reminder ', h('select', {onchange: e => { o.alarm = +e.target.value; }},
+      [[0, 'None'], [15, '15 min before'], [30, '30 min before'], [60, '1 hour before'], [1440, '1 day before']].map(([v, t]) => h('option', {value: v, selected: v === o.alarm}, t)))));
+  const list = h('div');
+  let lastMonth = '';
+  events.slice(0, 400).forEach(e => {
+    const m = e.start.toLocaleString([], {month: 'long', year: 'numeric'});
+    if (m !== lastMonth){ lastMonth = m; list.append(h('div', {class: 'month'}, m)); }
+    const when = e.allDay ? e.start.toLocaleDateString([], {weekday: 'short', month: 'short', day: 'numeric'}) + (e.endDay && e.endDay !== e.day ? ' (multi-day)' : ' · time TBD')
+      : e.start.toLocaleString([], {weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'});
+    list.append(h('div', {class: 'ev'}, h('div', {class: 't'}, when), h('div', {}, h('div', {}, e.title), e.location ? h('div', {class: 'l'}, e.location) : null)));
+  });
+  if (events.length > 400) list.append(h('div', {class: 'msg'}, `Showing the first 400 of ${events.length}; the file contains all of them.`));
+  const dl = h('button', {class: 'btn pri', disabled: !events.length, onclick: () => download(events)}, `Download .ics (${events.length} events)`);
+  res.replaceChildren(h('div', {class: 'panel'},
+    h('h2', {}, events.length ? `${events.length} events found` : 'No events found'),
+    state.failed && state.failed.length ? h('div', {class: 'msg err'}, "Couldn't load: " + state.failed.join(', ')) : null,
+    optsRow, dl, list,
+    h('div', {class: 'how'}, 'On iPhone, open the downloaded file and choose Add All. On Android, open it with Google Calendar. Times convert to your phone’s time zone. The file is a snapshot: rebuild it later to pick up schedule changes.')));
+}
+
+function download(events){
+  const ics = buildICS(events, {alarmMin: state.opts.alarm});
+  const a = h('a', {href: URL.createObjectURL(new Blob([ics], {type: 'text/calendar;charset=utf-8'})), download: 'my-sports-schedule.ics'});
+  document.body.append(a); a.click(); a.remove();
+}
+
+$('q').addEventListener('input', e => { state.q = e.target.value; renderTeams(); });
+$('all').addEventListener('click', () => { const lg = lgByKey(state.league), q = state.q.trim().toLowerCase(); (state.teams[lg.key] || []).filter(t => !q || t.displayName.toLowerCase().includes(q)).forEach(t => toggle(lg, t, true)); });
+$('none').addEventListener('click', () => { const lg = lgByKey(state.league); (state.teams[lg.key] || []).forEach(t => toggle(lg, t, false)); });
+$('build').addEventListener('click', build);
+load(); renderSummary(); showLeague();
+</script>
+</body>
+</html>
